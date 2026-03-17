@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="BtoFaturFundos_V01">
+    <output-path>$PROJECT_DIR$/../JARs</output-path>
+    <root id="archive" name="BtoFaturFundos_V01.jar">
+      <element id="module-output" name="BtoFaturFundos_WK" />
+    </root>
+  </artifact>
+</component>
