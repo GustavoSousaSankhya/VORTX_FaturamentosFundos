@@ -1,4 +1,4 @@
-package br.com.bandeirantes.faturfundos.vortx.model;
+package br.com.bandeirantes.geranotas.fundos.vortx.model;
 
 import java.math.BigDecimal;
 

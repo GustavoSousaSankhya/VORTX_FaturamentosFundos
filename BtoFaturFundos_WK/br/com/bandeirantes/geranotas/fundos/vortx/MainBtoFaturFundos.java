@@ -1,4 +1,4 @@
-package br.com.bandeirantes.faturfundos.vortx;
+package br.com.bandeirantes.geranotas.fundos.vortx;
 
 import br.com.sankhya.extensions.actionbutton.AcaoRotinaJava;
 import br.com.sankhya.extensions.actionbutton.ContextoAcao;
