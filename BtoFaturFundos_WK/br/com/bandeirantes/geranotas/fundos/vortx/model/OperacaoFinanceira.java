@@ -9,10 +9,10 @@ public class OperacaoFinanceira {
     BigDecimal controleInterno;
     String descrIf;
     String apelidoOperacao;
-    String emissao;
-    String serie;
+    BigDecimal emissao;
+    BigDecimal serie;
 
-    public OperacaoFinanceira(String periodicidade,String tipoOperacao, BigDecimal controleInterno, String descrIf, String apelidoOperacao, String emissao, String serie) {
+    public OperacaoFinanceira(String periodicidade,String tipoOperacao, BigDecimal controleInterno, String descrIf, String apelidoOperacao, BigDecimal emissao, BigDecimal serie) {
         this.periodicidade = periodicidade;
         this.tipoOperacao = tipoOperacao;
         this.controleInterno = controleInterno;
@@ -84,19 +84,19 @@ public class OperacaoFinanceira {
         this.apelidoOperacao = apelidoOperacao;
     }
 
-    public String getEmissao() {
+    public BigDecimal getEmissao() {
         return emissao;
     }
 
-    public void setEmissao(String emissao) {
+    public void setEmissao(BigDecimal emissao) {
         this.emissao = emissao;
     }
 
-    public String getSerie() {
+    public BigDecimal getSerie() {
         return serie;
     }
 
-    public void setSerie(String serie) {
+    public void setSerie(BigDecimal serie) {
         this.serie = serie;
     }
 }
