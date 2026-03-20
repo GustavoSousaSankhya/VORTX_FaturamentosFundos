@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Manual de Utilização — Faturamento de Fundos VORTX</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            font-size: 11pt;
+            color: #1a1a1a;
+            background: #fff;
+            line-height: 1.6;
+        }
+
+        /* CAPA */
+        .capa {
+            page-break-after: always;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(160deg, #0d3b6e 0%, #1a6fb5 100%);
+            color: white;
+            text-align: center;
+            padding: 60px;
+        }
+        .capa .logo-area {
+            font-size: 48pt;
+            font-weight: 900;
+            letter-spacing: 4px;
+            margin-bottom: 16px;
+            color: #fff;
+        }
+        .capa .logo-sub {
+            font-size: 13pt;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            opacity: 0.75;
+            margin-bottom: 60px;
+        }
+        .capa h1 {
+            font-size: 22pt;
+            font-weight: 700;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+        .capa .subtitulo {
+            font-size: 13pt;
+            opacity: 0.85;
+            margin-bottom: 60px;
+        }
+        .capa .meta {
+            font-size: 10pt;
+            opacity: 0.65;
+            border-top: 1px solid rgba(255,255,255,0.3);
+            padding-top: 20px;
+            width: 100%;
+        }
+
+        /* SUMÁRIO */
+        .sumario {
+            page-break-after: always;
+            padding: 60px 80px;
+        }
+        .sumario h2 {
+            font-size: 18pt;
+            color: #0d3b6e;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #1a6fb5;
+        }
+        .sumario ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sumario ul li {
+            padding: 8px 0;
+            border-bottom: 1px dotted #ccc;
+            display: flex;
+            justify-content: space-between;
+            font-size: 11pt;
+        }
+        .sumario ul li .num {
+            color: #1a6fb5;
+            font-weight: 700;
+            margin-right: 12px;
+        }
+        .sumario .section-title {
+            font-weight: 700;
+            color: #0d3b6e;
+            font-size: 12pt;
+            margin-top: 20px;
+            margin-bottom: 6px;
+            padding: 6px 0;
+            border-bottom: none;
+        }
+
+        /* CONTEÚDO */
+        .conteudo {
+            padding: 50px 80px;
+        }
+
+        h2.secao {
+            font-size: 18pt;
+            color: #0d3b6e;
+            margin: 40px 0 16px 0;
+            padding-bottom: 8px;
+            border-bottom: 3px solid #1a6fb5;
+            page-break-before: always;
+        }
+        h2.secao:first-of-type {
+            page-break-before: avoid;
+        }
+        h3.subsecao {
+            font-size: 13pt;
+            color: #1a6fb5;
+            margin: 28px 0 12px 0;
+            padding-left: 10px;
+            border-left: 4px solid #1a6fb5;
+        }
+
+        p { margin-bottom: 10px; }
+
+        .destaque {
+            background: #eef5ff;
+            border-left: 5px solid #1a6fb5;
+            padding: 14px 18px;
+            border-radius: 0 6px 6px 0;
+            margin: 16px 0;
+            font-size: 10.5pt;
+        }
+        .destaque strong { color: #0d3b6e; }
+
+        .alerta {
+            background: #fff8e1;
+            border-left: 5px solid #f59e0b;
+            padding: 14px 18px;
+            border-radius: 0 6px 6px 0;
+            margin: 16px 0;
+            font-size: 10.5pt;
+        }
+        .alerta strong { color: #b45309; }
+
+        .erro-box {
+            background: #fff0f0;
+            border-left: 5px solid #dc2626;
+            padding: 14px 18px;
+            border-radius: 0 6px 6px 0;
+            margin: 16px 0;
+            font-size: 10.5pt;
+        }
+        .erro-box strong { color: #dc2626; }
+
+        /* TABELAS */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0 24px 0;
+            font-size: 10pt;
+        }
+        thead tr {
+            background: #0d3b6e;
+            color: white;
+        }
+        thead th {
+            padding: 10px 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+        tbody tr:nth-child(even) { background: #f0f6ff; }
+        tbody tr:hover { background: #ddeeff; }
+        tbody td {
+            padding: 9px 12px;
+            border-bottom: 1px solid #dde4ee;
+            vertical-align: top;
+        }
+        .obrig {
+            color: #dc2626;
+            font-weight: 700;
+        }
+        .opcional {
+            color: #6b7280;
+            font-style: italic;
+        }
+
+        /* PASSO A PASSO */
+        .passo-container {
+            margin: 20px 0;
+        }
+        .passo {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 16px;
+            gap: 16px;
+        }
+        .passo-num {
+            min-width: 36px;
+            height: 36px;
+            background: #1a6fb5;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 13pt;
+            flex-shrink: 0;
+        }
+        .passo-texto {
+            padding-top: 5px;
+        }
+        .passo-texto strong {
+            color: #0d3b6e;
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        /* STATUS */
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin: 16px 0;
+        }
+        .status-card {
+            border: 1px solid #dde4ee;
+            border-radius: 8px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .status-badge {
+            min-width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 12pt;
+            color: white;
+        }
+        .s1 { background: #9ca3af; }
+        .s2 { background: #16a34a; }
+        .s3 { background: #dc2626; }
+        .s4 { background: #d97706; }
+        .s5 { background: #2563eb; }
+        .s6 { background: #374151; }
+        .s7 { background: #7c3aed; }
+        .status-card .desc { font-size: 10pt; color: #374151; }
+        .status-card .desc strong { display: block; color: #1a1a1a; font-size: 10.5pt; }
+
+        /* FLUXO VISUAL */
+        .fluxo {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0;
+            margin: 24px 0;
+        }
+        .fluxo-item {
+            background: #0d3b6e;
+            color: white;
+            padding: 10px 14px;
+            border-radius: 6px;
+            font-size: 9pt;
+            text-align: center;
+            min-width: 90px;
+        }
+        .fluxo-item .fi-num {
+            font-size: 7pt;
+            opacity: 0.7;
+            display: block;
+        }
+        .fluxo-seta {
+            font-size: 16pt;
+            color: #1a6fb5;
+            padding: 0 4px;
+        }
+
+        /* RODAPÉ */
+        @page {
+            margin: 2cm 2cm 2.5cm 2cm;
+            @bottom-center {
+                content: "VORTX — Faturamento de Fundos | Página " counter(page);
+                font-size: 9pt;
+                color: #6b7280;
+            }
+        }
+
+        .rodape-doc {
+            margin-top: 60px;
+            padding-top: 16px;
+            border-top: 1px solid #dde4ee;
+            font-size: 9pt;
+            color: #9ca3af;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ========== CAPA ========== -->
+<div class="capa">
+    <div class="logo-area">VORTX</div>
+    <div class="logo-sub">Gestão de Fundos</div>
+    <h1>Manual de Utilização<br>Faturamento de Fundos</h1>
+    <div class="subtitulo">Processo integrado de geração de notas e baixas no Sankhya</div>
+    <div class="meta">
+        Versão 1.0 &nbsp;|&nbsp; Março de 2026 &nbsp;|&nbsp; Uso interno
+    </div>
+</div>
+
+<!-- ========== SUMÁRIO ========== -->
+<div class="sumario">
+    <h2>Sumário</h2>
+    <ul>
+        <li class="section-title"><span><span class="num">1.</span> Visão Geral do Processo</span></li>
+        <li><span><span class="num">2.</span> Tela de Faturamentos — AD_FATURFUNDOS</span></li>
+        <li><span><span class="num">3.</span> Preenchimento dos Campos</span></li>
+        <li><span><span class="num">4.</span> Como Gerar a Nota Fiscal</span></li>
+        <li><span><span class="num">5.</span> Entendendo o Status do Faturamento</span></li>
+        <li><span><span class="num">6.</span> Registrando uma Baixa de Título</span></li>
+        <li><span><span class="num">7.</span> Baixa Total x Baixa Parcial</span></li>
+        <li><span><span class="num">8.</span> O que acontece automaticamente</span></li>
+        <li><span><span class="num">9.</span> Erros mais comuns e como resolver</span></li>
+    </ul>
+</div>
+
+<!-- ========== CONTEÚDO ========== -->
+<div class="conteudo">
+
+    <!-- 1. VISÃO GERAL -->
+    <h2 class="secao">1. Visão Geral do Processo</h2>
+
+    <p>
+        O módulo de <strong>Faturamento de Fundos</strong> foi desenvolvido para substituir o processo manual de geração de notas via planilha.
+        Todos os dados de faturamento enviados pela VORTX são recebidos e processados diretamente dentro do Sankhya.
+    </p>
+
+    <p>O processo completo acontece em quatro etapas, sendo que três delas ocorrem de forma <strong>completamente automática</strong>:</p>
+
+    <div class="fluxo">
+        <div class="fluxo-item"><span class="fi-num">AUTO</span>Cadastro do Parceiro</div>
+        <div class="fluxo-seta">→</div>
+        <div class="fluxo-item"><span class="fi-num">AUTO</span>Operação Financeira</div>
+        <div class="fluxo-seta">→</div>
+        <div class="fluxo-item"><span class="fi-num">USUÁRIO</span>Geração da Nota</div>
+        <div class="fluxo-seta">→</div>
+        <div class="fluxo-item"><span class="fi-num">AUTO</span>Baixa do Título</div>
+    </div>
+
+    <div class="destaque">
+        <strong>Resumo prático:</strong> O sistema recebe os dados da VORTX, cria o cadastro do cliente automaticamente (se necessário), vincula a operação financeira e aguarda que você clique no botão para gerar a nota. Quando a VORTX informar o pagamento, a baixa acontece automaticamente.
+    </div>
+
+    <!-- 2. TELA DE FATURAMENTOS -->
+    <h2 class="secao">2. Tela de Faturamentos — Faturamentos Fundos</h2>
+
+    <p>
+        A tela principal do processo é a tela de <strong>Faturamentos Fundos</strong> (tabela <em>AD_FATURFUNDOS</em>).
+        Cada linha desta tela representa um faturamento recebido da VORTX.
+    </p>
+
+    <div class="alerta">
+        <strong>Importante:</strong> Os registros nesta tela são criados automaticamente via integração com a VORTX. Você não precisa incluir linhas manualmente — apenas gerenciar e gerar as notas a partir do que já está cadastrado.
+    </div>
+
+    <!-- 3. CAMPOS -->
+    <h2 class="secao">3. Preenchimento dos Campos</h2>
+
+    <p>Os campos da tela são divididos em dois grupos: os que vêm preenchidos pela VORTX e os que são preenchidos automaticamente pelo Sankhya após a geração da nota.</p>
+
+    <h3 class="subsecao">Campos fornecidos pela VORTX (leitura)</h3>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Campo</th>
+                <th>O que significa</th>
+                <th>Obrigatório para gerar nota?</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>CNPJ do Cliente</td><td>CNPJ da empresa cliente do fundo</td><td class="obrig">Sim</td></tr>
+            <tr><td>E-mail do Cliente</td><td>E-mail para envio de boleto/nota</td><td class="opcional">Opcional</td></tr>
+            <tr><td>CNPJ do Gestor</td><td>CNPJ do gestor do fundo</td><td class="opcional">Opcional</td></tr>
+            <tr><td>E-mail do Gestor</td><td>E-mail do gestor</td><td class="opcional">Opcional</td></tr>
+            <tr><td>Unidade de Negócio</td><td>Empresa/unidade que fatura</td><td class="obrig">Sim</td></tr>
+            <tr><td>Tipo de Operação</td><td>Define o tipo de nota a ser gerada</td><td class="obrig">Sim</td></tr>
+            <tr><td>Tipo de Negociação</td><td>Condição de pagamento</td><td class="obrig">Sim</td></tr>
+            <tr><td>Data de Remessa</td><td>Data de referência do faturamento</td><td class="obrig">Sim</td></tr>
+            <tr><td>Serviço (Produto)</td><td>Serviço que está sendo faturado</td><td class="obrig">Sim</td></tr>
+            <tr><td>Valor Unitário</td><td>Valor do serviço a ser cobrado</td><td class="obrig">Sim</td></tr>
+            <tr><td>Operação Financeira</td><td>Código da operação financeira vinculada</td><td class="obrig">Sim</td></tr>
+            <tr><td>Observação</td><td>Texto livre para observações na nota</td><td class="opcional">Opcional</td></tr>
+            <tr><td>Apelido da Operação</td><td>Nome da operação do fundo</td><td class="opcional">Informativo</td></tr>
+            <tr><td>Periodicidade</td><td>Frequência do faturamento (Mensal, Anual...)</td><td class="opcional">Informativo</td></tr>
+        </tbody>
+    </table>
+
+    <h3 class="subsecao">Campos preenchidos pelo Sankhya (automático)</h3>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Campo</th>
+                <th>Quando é preenchido</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>Nro Único da Nota (NUNOTA)</td><td>Ao gerar a nota pelo botão</td></tr>
+            <tr><td>Nro da Nota (NUMNOTA)</td><td>Ao gerar a nota pelo botão</td></tr>
+            <tr><td>Status do Faturamento</td><td>Atualizado automaticamente em cada etapa</td></tr>
+            <tr><td>Usuário do Faturamento</td><td>Ao gerar a nota pelo botão</td></tr>
+            <tr><td>Data/Hora do Faturamento</td><td>Ao gerar a nota pelo botão</td></tr>
+        </tbody>
+    </table>
+
+    <!-- 4. COMO GERAR A NOTA -->
+    <h2 class="secao">4. Como Gerar a Nota Fiscal</h2>
+
+    <p>A geração da nota é feita através de um <strong>botão de ação</strong> disponível na tela de Faturamentos Fundos. Siga os passos abaixo:</p>
+
+    <div class="passo-container">
+        <div class="passo">
+            <div class="passo-num">1</div>
+            <div class="passo-texto">
+                <strong>Abra a tela de Faturamentos Fundos no Sankhya</strong>
+                Navegue até a tela customizada de Faturamentos Fundos da VORTX.
+            </div>
+        </div>
+        <div class="passo">
+            <div class="passo-num">2</div>
+            <div class="passo-texto">
+                <strong>Verifique os dados do faturamento</strong>
+                Confirme que os campos obrigatórios (CNPJ, Unidade de Negócio, Tipo de Operação, Serviço, Valor Unitário, Data de Remessa e Operação Financeira) estão preenchidos.
+            </div>
+        </div>
+        <div class="passo">
+            <div class="passo-num">3</div>
+            <div class="passo-texto">
+                <strong>Selecione a(s) linha(s) desejada(s)</strong>
+                Você pode selecionar uma ou mais linhas ao mesmo tempo para gerar várias notas de uma só vez.
+            </div>
+        </div>
+        <div class="passo">
+            <div class="passo-num">4</div>
+            <div class="passo-texto">
+                <strong>Clique no botão "Gerar Nota"</strong>
+                O sistema irá processar cada linha selecionada e gerar a nota fiscal correspondente.
+            </div>
+        </div>
+        <div class="passo">
+            <div class="passo-num">5</div>
+            <div class="passo-texto">
+                <strong>Confirme a mensagem de sucesso</strong>
+                Ao final, o Sankhya exibirá a mensagem <em>"Nota(s) gerada(s) com sucesso!"</em>. Os campos de NUNOTA, NUMNOTA e Data/Hora do Faturamento serão preenchidos automaticamente na linha.
+            </div>
+        </div>
+    </div>
+
+    <div class="destaque">
+        <strong>Linhas já processadas são ignoradas:</strong> Se uma linha já tiver uma nota gerada (campo NUNOTA preenchido), o sistema irá ignorá-la automaticamente. Não há risco de gerar notas duplicadas ao selecionar várias linhas.
+    </div>
+
+    <!-- 5. STATUS -->
+    <h2 class="secao">5. Entendendo o Status do Faturamento</h2>
+
+    <p>O campo <strong>Status do Faturamento</strong> indica em qual etapa cada registro se encontra. Veja o significado de cada valor:</p>
+
+    <div class="status-grid">
+        <div class="status-card">
+            <div class="status-badge s1">1</div>
+            <div class="desc"><strong>Pendente</strong>Faturamento recebido, aguardando geração da nota.</div>
+        </div>
+        <div class="status-card">
+            <div class="status-badge s2">2</div>
+            <div class="desc"><strong>Nota Gerada</strong>Nota fiscal gerada com sucesso no Sankhya.</div>
+        </div>
+        <div class="status-card">
+            <div class="status-badge s3">3</div>
+            <div class="desc"><strong>Erro na Geração</strong>Ocorreu um erro ao tentar gerar a nota. Verificar campos obrigatórios.</div>
+        </div>
+        <div class="status-card">
+            <div class="status-badge s4">4</div>
+            <div class="desc"><strong>Baixado Parcialmente</strong>O título foi pago de forma parcial. Existe saldo em aberto.</div>
+        </div>
+        <div class="status-card">
+            <div class="status-badge s5">5</div>
+            <div class="desc"><strong>Baixado Totalmente</strong>O título foi quitado integralmente.</div>
+        </div>
+        <div class="status-card">
+            <div class="status-badge s6">6</div>
+            <div class="desc"><strong>Cancelado</strong>O faturamento foi cancelado.</div>
+        </div>
+        <div class="status-card">
+            <div class="status-badge s7">7</div>
+            <div class="desc"><strong>Reservado</strong>Uso futuro.</div>
+        </div>
+    </div>
+
+    <!-- 6. BAIXA -->
+    <h2 class="secao">6. Registrando uma Baixa de Título</h2>
+
+    <p>
+        A baixa representa o <strong>pagamento</strong> (total ou parcial) do título financeiro gerado pela nota.
+        Ela é registrada na tela de <strong>Baixas de Faturamento</strong> (sub-tela ou aba dentro do faturamento),
+        que corresponde à tabela <em>AD_FATURFUNDOSBAIXA</em>.
+    </p>
+
+    <div class="alerta">
+        <strong>Atenção:</strong> A baixa só pode ser registrada para faturamentos que já possuem nota gerada (Status = 2 ou superior). Tentar baixar um faturamento sem nota resultará em erro.
+    </div>
+
+    <h3 class="subsecao">Como registrar uma baixa</h3>
+
+    <div class="passo-container">
+        <div class="passo">
+            <div class="passo-num">1</div>
+            <div class="passo-texto">
+                <strong>Acesse a sub-tela de Baixas</strong>
+                Dentro do faturamento desejado, acesse a aba ou sub-tela de Baixas de Faturamento.
+            </div>
+        </div>
+        <div class="passo">
+            <div class="passo-num">2</div>
+            <div class="passo-texto">
+                <strong>Inclua um novo registro</strong>
+                Clique em "Incluir" (ou o botão equivalente de novo registro na tela).
+            </div>
+        </div>
+        <div class="passo">
+            <div class="passo-num">3</div>
+            <div class="passo-texto">
+                <strong>Preencha os campos obrigatórios</strong>
+                Informe o <strong>Valor da Baixa</strong> e a <strong>Data/Hora da Integração</strong> (data em que o pagamento foi identificado).
+                O campo ID de Integração deve corresponder ao ID do faturamento pai.
+            </div>
+        </div>
+        <div class="passo">
+            <div class="passo-num">4</div>
+            <div class="passo-texto">
+                <strong>Salve o registro</strong>
+                Ao salvar, o sistema automaticamente localiza o título financeiro da nota e executa a baixa pelo valor informado.
+                Os campos Nro da Nota e Nro do Financeiro serão preenchidos automaticamente.
+            </div>
+        </div>
+    </div>
+
+    <!-- 7. TOTAL X PARCIAL -->
+    <h2 class="secao">7. Baixa Total x Baixa Parcial</h2>
+
+    <p>O sistema decide automaticamente se a baixa é total ou parcial com base no valor informado:</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Situação</th>
+                <th>O que acontece</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Valor da Baixa = Valor do Título</strong></td>
+                <td>Baixa <strong>total</strong>: o título é quitado integralmente.</td>
+            </tr>
+            <tr>
+                <td><strong>Valor da Baixa &gt; Valor do Título</strong></td>
+                <td>Baixa <strong>total</strong>: o sistema usa o valor original do título (não ultrapassa).</td>
+            </tr>
+            <tr>
+                <td><strong>Valor da Baixa &lt; Valor do Título</strong></td>
+                <td>Baixa <strong>parcial</strong>: o título é parcialmente quitado e o saldo restante é mantido em aberto com o mesmo vencimento original.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="destaque">
+        <strong>Exemplo prático:</strong> Se o título é de R$ 10.000,00 e a VORTX informa um pagamento de R$ 6.000,00, o sistema baixa R$ 6.000,00 e mantém R$ 4.000,00 como saldo a receber. Uma nova baixa pode ser registrada posteriormente para quitar o restante.
+    </div>
+
+    <!-- 8. AUTOMÁTICO -->
+    <h2 class="secao">8. O que acontece automaticamente</h2>
+
+    <p>Ao inserir um novo faturamento na tela (via integração da VORTX), o Sankhya executa automaticamente, sem nenhuma ação do usuário:</p>
+
+    <h3 class="subsecao">Cadastro do Parceiro (Cliente)</h3>
+    <p>
+        O sistema verifica se o cliente (identificado pelo CNPJ) já existe no cadastro de parceiros do Sankhya.
+        Se não existir, ele consulta a <strong>Receita Federal (ReceitaWS)</strong> e cria o cadastro automaticamente com razão social, endereço e município.
+        Um contato ativo também é criado com o e-mail informado.
+    </p>
+
+    <h3 class="subsecao">Vinculação da Operação Financeira</h3>
+    <p>
+        Se o campo <em>Operação Financeira</em> não estiver preenchido e todos os dados necessários estiverem disponíveis,
+        o sistema busca se já existe uma operação com as mesmas características.
+        Se não existir, cria uma nova automaticamente e vincula ao faturamento.
+    </p>
+
+    <h3 class="subsecao">Baixa do Título (após pagamento)</h3>
+    <p>
+        Quando a VORTX informa um pagamento através da sub-tela de baixas, o sistema executa automaticamente a baixa
+        no título financeiro correspondente — sem necessidade de nenhuma ação adicional do usuário.
+    </p>
+
+    <!-- 9. ERROS -->
+    <h2 class="secao">9. Erros mais comuns e como resolver</h2>
+
+    <div class="erro-box">
+        <strong>"CNPJ do cliente está em branco!"</strong><br>
+        O campo CNPJ do Cliente não foi preenchido. Verifique o registro e certifique-se de que o CNPJ está informado corretamente antes de gerar a nota.
+    </div>
+
+    <div class="erro-box">
+        <strong>"Parceiro não encontrado para o CNPJ: XX.XXX.XXX/XXXX-XX"</strong><br>
+        O CNPJ informado não está cadastrado no Sankhya e a criação automática não foi concluída (pode ter havido erro na consulta à Receita Federal). Verifique se o CNPJ é válido ou cadastre o parceiro manualmente no Sankhya.
+    </div>
+
+    <div class="erro-box">
+        <strong>"Operação Financeira está em branco!"</strong><br>
+        O campo Operação Financeira não foi vinculado automaticamente. Verifique se os campos Apelido da Operação, Emissão, Série, Tipo de Operação e Controle Interno estão todos preenchidos no faturamento.
+    </div>
+
+    <div class="erro-box">
+        <strong>"Nota já foi gerada para este faturamento!"</strong><br>
+        Você tentou gerar a nota em um registro que já possui nota gerada. Nenhuma ação é necessária — a nota já foi criada anteriormente.
+    </div>
+
+    <div class="erro-box">
+        <strong>"Nota ainda não gerada para o faturamento..."</strong><br>
+        Foi tentado registrar uma baixa em um faturamento que ainda não possui nota gerada. Gere a nota primeiro (Processo 4 — botão de ação) e depois registre a baixa.
+    </div>
+
+    <div class="erro-box">
+        <strong>"Título financeiro não encontrado para NUNOTA: X"</strong><br>
+        A nota foi gerada mas o título financeiro correspondente não foi localizado. Entre em contato com o suporte técnico informando o número da nota.
+    </div>
+
+    <div class="alerta">
+        <strong>Dica:</strong> Em caso de dúvidas ou erros não listados acima, anote a mensagem exibida pelo sistema e entre em contato com o responsável técnico (equipe Sankhya/Bandeirantes).
+    </div>
+
+    <div class="rodape-doc">
+        VORTX — Manual de Utilização: Faturamento de Fundos &nbsp;|&nbsp; Versão 1.0 &nbsp;|&nbsp; Março de 2026 &nbsp;|&nbsp; Uso interno
+    </div>
+
+</div>
+</body>
+</html>
